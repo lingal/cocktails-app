@@ -1,10 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
-
-export const GlobalStyles = createGlobalStyle` 
-
+/* 
+====== 
+Variables 
+======
+*/
 :root {
   --primaryLightColor: #d4e6a5;
   --primaryColor: #476a2e;
+  --primaryDarkColor: #c02c03;
   --mainWhite: #fff;
   --offWhite: #f7f7f7;
   --mainBackground: #f1f5f8;
@@ -12,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`
   --mainBlack: #222;
   --mainGrey: #ececec;
   --darkGrey: #afafaf;
+  --mainRed: #bd0303;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 0.3rem;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
@@ -21,7 +24,11 @@ export const GlobalStyles = createGlobalStyle`
   --maxWidth: 40rem;
   --fullWidth: 1170px;
 }
-
+/* 
+====== 
+Global Styles 
+======
+*/
 * {
   margin: 0;
   padding: 0;
@@ -62,6 +69,11 @@ img {
   display: block;
 }
 
+/* 
+====== 
+Buttons 
+======
+*/
 .btn,
 .btn-white,
 .btn-primary {
@@ -114,7 +126,11 @@ img {
   background: var(--primaryLightColor);
   border-color: var(--primaryLightColor);
 }
-
+/* 
+====== 
+Navbar
+======
+*/
 .navbar {
   background: var(--mainWhite);
   height: 5rem;
@@ -152,7 +168,11 @@ img {
 .logo {
   width: 12rem;
 }
-
+/* 
+====== 
+About
+======
+*/
 .about-section {
   width: var(--smallWidth);
   max-width: var(--maxWidth);
@@ -163,7 +183,11 @@ img {
   font-weight: 400;
   letter-spacing: 2px;
 }
-
+/* 
+====== 
+Error
+======
+*/
 .error-page {
   display: flex;
   justify-content: center;
@@ -172,6 +196,11 @@ img {
   text-align: center;
   text-transform: capitalize;
 }
+/* 
+====== 
+Cocktails List 
+======
+*/
 
 .section {
   padding: 5rem 0;
@@ -198,6 +227,11 @@ img {
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
   }
 }
+/* 
+====== 
+Cocktail 
+======
+*/
 
 .cocktail {
   background: var(--mainWhite);
@@ -232,7 +266,11 @@ img {
   color: var(--darkGrey);
   margin-bottom: 0.5rem;
 }
-
+/* 
+====== 
+Form
+======
+*/
 .search {
   margin-top: 1rem;
   padding-bottom: 0;
@@ -265,6 +303,11 @@ img {
   padding: 0.5rem;
   font-size: 1.2rem;
 }
+/* 
+====== 
+Cocktail
+======
+*/
 
 .cocktail-section {
   text-align: center;
@@ -366,6 +409,3 @@ img {
     height: 5em;
   }
 }
-
-
-`;

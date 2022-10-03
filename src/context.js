@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import axios from 'axios';
-// import { useCallback } from 'react';
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const AppContext = React.createContext();
@@ -8,23 +7,44 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [drinks, setDrinks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchCocktail, setSearchCocktail] = useState('a');
 
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     axios
-      .get(url)
+      .get(`${url}${searchCocktail}`)
       .then((resp) => {
         const { drinks } = resp.data;
-        setDrinks(drinks);
+
+        if (drinks) {
+          const newDrinks = drinks.map((drink) => {
+            const {
+              idDrink: id,
+              strDrink: name,
+              strGlass: glass,
+              strAlcoholic: info,
+              strDrinkThumb: drinkImg
+            } = drink;
+            return { id, drinkImg, name, info, glass };
+          });
+
+          setDrinks(newDrinks);
+        } else {
+          setDrinks([]);
+        }
       })
       .catch((err) => console.log(err))
       .then(() => setIsLoading(false));
-  };
+  }, [searchCocktail]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [searchCocktail, fetchData]);
 
-  return <AppContext.Provider value="hello">{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ drinks, isLoading, setSearchCocktail }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export const useGlobalContext = () => {
